@@ -8,11 +8,18 @@ import { Component } from '@angular/core';
 export class AppComponent {
   newMemberName: string = "";
   members: string[] = [];
+  errorMessage: string = "";
 
   addMember(): void {
-    this.members.push(this.newMemberName);
+    this.errorMessage = "";
 
-    console.log(this.members);
+    if (! this.newMemberName) {
+      this.errorMessage = "Ingresá el nombre";
+      return;
+    }
+
+    this.members.push(this.newMemberName);
+    this.newMemberName = "";
   }
 
   onInput(member: string): void {
